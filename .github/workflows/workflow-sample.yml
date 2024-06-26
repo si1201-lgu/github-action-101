@@ -67,6 +67,3 @@ jobs:
 
       - name: Create Release
         uses: ncipollo/release-action@v1
-        with:
-          token: ${{ secrets.RELEASE_ACTIONS_TOKEN }}
-          generate_release_notes: true
