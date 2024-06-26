@@ -20,7 +20,13 @@ jobs:
         run: go run hello.go
 
       - name: build go
-        run: go build hello.go
+        run: go build -o build/hello hello.go
+
+      - name: Upload Go binary as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-binary
+          path: build/hello
 
   test:
     name: Test
@@ -29,4 +35,13 @@ jobs:
     steps:
       - name: Set Test
         id: set-test-stage
+        run: echo ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+  dev:
+    name: Dev
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Dev
+        id: set-dev-stage
         run: echo ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
