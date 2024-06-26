@@ -50,7 +50,7 @@ jobs:
     name: Run
     needs: [ test, dev ]
     runs-on: ubuntu-latest
-    permission:
+    permissions:
       contents: write
     steps:
       - name: Download Go binary artifact
