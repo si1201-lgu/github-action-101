@@ -66,7 +66,7 @@ jobs:
         run: ./build/hello
 
       - name: Create Release
-        uses: actions/release-action@v4
+        uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.RELEASE_ACTIONS_TOKEN }}
           generate_release_notes: true
