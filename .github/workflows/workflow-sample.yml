@@ -45,3 +45,20 @@ jobs:
       - name: Set Dev
         id: set-dev-stage
         run: echo ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+  run:
+    name: Run
+    needs: [ test, dev ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Go binary artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: hello-binary
+          path: build/
+
+      - name: Set execute permission
+        run: chmod +x build/hello
+
+      - name: Run Go binary
+        run: ./build/hello
