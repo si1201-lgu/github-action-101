@@ -21,3 +21,12 @@ jobs:
 
       - name: build go
         run: go build hello.go
+
+  test:
+    name: Test
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Test
+        id: set-test-stage
+        run: echo ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
