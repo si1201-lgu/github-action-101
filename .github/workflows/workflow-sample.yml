@@ -10,8 +10,14 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup Go version
         uses: actions/setup-go@v5
         with:
           go-version: '1.22.0'
-      - run: go run hello.go
+
+      - name: run go
+        run: go run hello.go
+
+      - name: build go
+        run: go build hello.go
